@@ -105,6 +105,11 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnViewBank.setText("View Bank Account");
+        btnViewBank.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewBankActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
@@ -214,6 +219,12 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane.setRightComponent(createbankJPanel);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCreateBankActionPerformed
+
+    private void btnViewBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBankActionPerformed
+        ViewBankJPanel viewbankJPanel =new  ViewBankJPanel(bankaccount);
+        // TODO add your handling code here:
+        splitPane.setRightComponent(viewbankJPanel);
+    }//GEN-LAST:event_btnViewBankActionPerformed
 
     /**
      * @param args the command line arguments
