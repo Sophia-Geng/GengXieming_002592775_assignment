@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Model.HomeAddress;
 import Model.Person;
 
 /**
@@ -16,9 +17,11 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     Person person;
+    HomeAddress homeaddress;
     public MainJFrame() {
         initComponents();
         person=new Person();
+        homeaddress=new HomeAddress();
         
     }
 
@@ -35,6 +38,8 @@ public class MainJFrame extends javax.swing.JFrame {
         controlPanel = new javax.swing.JPanel();
         btnCreatePerson = new javax.swing.JButton();
         btnViewPerson = new javax.swing.JButton();
+        btnCreateHomeAddress = new javax.swing.JButton();
+        btnViewHomeAddress = new javax.swing.JButton();
         workArea = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,6 +60,20 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnCreateHomeAddress.setText("Create Home Address");
+        btnCreateHomeAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateHomeAddressActionPerformed(evt);
+            }
+        });
+
+        btnViewHomeAddress.setText("View Home Address");
+        btnViewHomeAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewHomeAddressActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
@@ -63,7 +82,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnViewPerson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCreatePerson, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                    .addComponent(btnCreatePerson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCreateHomeAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnViewHomeAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
@@ -73,16 +94,22 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnCreatePerson, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnViewPerson)
-                .addContainerGap(391, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(btnCreateHomeAddress)
+                .addGap(18, 18, 18)
+                .addComponent(btnViewHomeAddress)
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(controlPanel);
+
+        workArea.setBackground(new java.awt.Color(255, 153, 51));
 
         javax.swing.GroupLayout workAreaLayout = new javax.swing.GroupLayout(workArea);
         workArea.setLayout(workAreaLayout);
         workAreaLayout.setHorizontalGroup(
             workAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 463, Short.MAX_VALUE)
         );
         workAreaLayout.setVerticalGroup(
             workAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,6 +139,20 @@ public class MainJFrame extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnCreatePersonActionPerformed
+
+    private void btnCreateHomeAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateHomeAddressActionPerformed
+        // TODO add your handling code here:
+        CreateHomeJPanel createhomeJPanel= new CreateHomeJPanel (homeaddress);
+        
+        splitPane.setRightComponent(createhomeJPanel);
+        
+    }//GEN-LAST:event_btnCreateHomeAddressActionPerformed
+
+    private void btnViewHomeAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHomeAddressActionPerformed
+        // TODO add your handling code here:
+        ViewHomeJPanel viewhomeJPanel=new ViewHomeJPanel(homeaddress);
+        splitPane.setRightComponent(viewhomeJPanel);
+    }//GEN-LAST:event_btnViewHomeAddressActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,7 +190,9 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreateHomeAddress;
     private javax.swing.JButton btnCreatePerson;
+    private javax.swing.JButton btnViewHomeAddress;
     private javax.swing.JButton btnViewPerson;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JSplitPane splitPane;

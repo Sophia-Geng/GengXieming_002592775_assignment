@@ -161,8 +161,7 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
         String email = fieldPersonEmail.getText();
         String gender = fieldPersonGender.getText();
         String phone = fieldPersonPhone.getText();
-           
-        person.setName(name);
+          
         person.setName(name);
         person.setAge(age);
         person.setEmail(email);
