@@ -5,6 +5,7 @@
 package UI;
 
 import Model.HomeAddress;
+import Model.LocalAddress;
 import Model.Person;
 
 /**
@@ -18,11 +19,12 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     Person person;
     HomeAddress homeaddress;
+    LocalAddress localaddress;
     public MainJFrame() {
         initComponents();
         person=new Person();
         homeaddress=new HomeAddress();
-        
+        localaddress=new LocalAddress();
     }
 
     /**
@@ -40,6 +42,8 @@ public class MainJFrame extends javax.swing.JFrame {
         btnViewPerson = new javax.swing.JButton();
         btnCreateHomeAddress = new javax.swing.JButton();
         btnViewHomeAddress = new javax.swing.JButton();
+        btnCreateLocalAddress = new javax.swing.JButton();
+        btnViewLocalAddress = new javax.swing.JButton();
         workArea = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,6 +78,20 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnCreateLocalAddress.setText("Create Local Address");
+        btnCreateLocalAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateLocalAddressActionPerformed(evt);
+            }
+        });
+
+        btnViewLocalAddress.setText("View Local Address");
+        btnViewLocalAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewLocalAddressActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
@@ -84,7 +102,9 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(btnViewPerson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCreatePerson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCreateHomeAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnViewHomeAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnViewHomeAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCreateLocalAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnViewLocalAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
@@ -98,7 +118,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnCreateHomeAddress)
                 .addGap(18, 18, 18)
                 .addComponent(btnViewHomeAddress)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(btnCreateLocalAddress)
+                .addGap(18, 18, 18)
+                .addComponent(btnViewLocalAddress)
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(controlPanel);
@@ -154,6 +178,17 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane.setRightComponent(viewhomeJPanel);
     }//GEN-LAST:event_btnViewHomeAddressActionPerformed
 
+    private void btnCreateLocalAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateLocalAddressActionPerformed
+        // TODO add your handling code here:
+        CreateLocalJPanel createlocalJPanal=new CreateLocalJPanel(localaddress);
+        splitPane.setRightComponent(createlocalJPanal);
+    }//GEN-LAST:event_btnCreateLocalAddressActionPerformed
+
+    private void btnViewLocalAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLocalAddressActionPerformed
+        ViewLocalJPanel viewlocalJPanel=new ViewLocalJPanel(localaddress);
+        splitPane.setRightComponent(viewlocalJPanel);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewLocalAddressActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -191,8 +226,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateHomeAddress;
+    private javax.swing.JButton btnCreateLocalAddress;
     private javax.swing.JButton btnCreatePerson;
     private javax.swing.JButton btnViewHomeAddress;
+    private javax.swing.JButton btnViewLocalAddress;
     private javax.swing.JButton btnViewPerson;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JSplitPane splitPane;

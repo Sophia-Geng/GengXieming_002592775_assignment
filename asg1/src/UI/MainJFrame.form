@@ -54,6 +54,8 @@
                           <Component id="btnCreatePerson" max="32767" attributes="0"/>
                           <Component id="btnCreateHomeAddress" max="32767" attributes="0"/>
                           <Component id="btnViewHomeAddress" max="32767" attributes="0"/>
+                          <Component id="btnCreateLocalAddress" max="32767" attributes="0"/>
+                          <Component id="btnViewLocalAddress" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -70,7 +72,11 @@
                       <Component id="btnCreateHomeAddress" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnViewHomeAddress" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="297" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="btnCreateLocalAddress" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnViewLocalAddress" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="192" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -106,6 +112,22 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewHomeAddressActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCreateLocalAddress">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Create Local Address"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateLocalAddressActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnViewLocalAddress">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="View Local Address"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewLocalAddressActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
