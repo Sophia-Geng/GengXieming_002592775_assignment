@@ -108,12 +108,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="state"/>
+        <Property name="text" type="java.lang.String" value="State"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="name"/>
+        <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -123,12 +123,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="street"/>
+        <Property name="text" type="java.lang.String" value="Street"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="city"/>
+        <Property name="text" type="java.lang.String" value="City"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="fieldLocalName">

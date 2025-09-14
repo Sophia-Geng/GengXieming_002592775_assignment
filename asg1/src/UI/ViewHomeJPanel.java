@@ -45,11 +45,11 @@ public class ViewHomeJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 204, 102));
 
-        jLabel4.setText("state");
+        jLabel4.setText("State");
 
-        jLabel5.setText("name");
+        jLabel5.setText("Name");
 
-        jLabel6.setText("zipCode");
+        jLabel6.setText("ZipCode");
 
         fieldHomeCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,9 +72,9 @@ public class ViewHomeJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("View Home Address");
 
-        jLabel2.setText("street");
+        jLabel2.setText("Street");
 
-        jLabel3.setText("city");
+        jLabel3.setText("City");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -92,7 +92,7 @@ public class ViewHomeJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()

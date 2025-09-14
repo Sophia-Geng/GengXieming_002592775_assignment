@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Model.BankAccount;
 import Model.HomeAddress;
 import Model.LocalAddress;
 import Model.Person;
@@ -20,11 +21,13 @@ public class MainJFrame extends javax.swing.JFrame {
     Person person;
     HomeAddress homeaddress;
     LocalAddress localaddress;
+    BankAccount bankaccount;
     public MainJFrame() {
         initComponents();
         person=new Person();
         homeaddress=new HomeAddress();
         localaddress=new LocalAddress();
+        bankaccount=new BankAccount();
     }
 
     /**
@@ -44,6 +47,8 @@ public class MainJFrame extends javax.swing.JFrame {
         btnViewHomeAddress = new javax.swing.JButton();
         btnCreateLocalAddress = new javax.swing.JButton();
         btnViewLocalAddress = new javax.swing.JButton();
+        btnCreateBank = new javax.swing.JButton();
+        btnViewBank = new javax.swing.JButton();
         workArea = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,6 +97,15 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnCreateBank.setText("Create Bank Account");
+        btnCreateBank.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateBankActionPerformed(evt);
+            }
+        });
+
+        btnViewBank.setText("View Bank Account");
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
@@ -104,7 +118,9 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(btnCreateHomeAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnViewHomeAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCreateLocalAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnViewLocalAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnViewLocalAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCreateBank, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnViewBank, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
@@ -122,7 +138,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnCreateLocalAddress)
                 .addGap(18, 18, 18)
                 .addComponent(btnViewLocalAddress)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(btnCreateBank)
+                .addGap(18, 18, 18)
+                .addComponent(btnViewBank)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(controlPanel);
@@ -189,6 +209,12 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane.setRightComponent(viewlocalJPanel);        // TODO add your handling code here:
     }//GEN-LAST:event_btnViewLocalAddressActionPerformed
 
+    private void btnCreateBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateBankActionPerformed
+        CreateBankJPanel createbankJPanel=new   CreateBankJPanel(bankaccount);
+        splitPane.setRightComponent(createbankJPanel);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCreateBankActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -225,9 +251,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreateBank;
     private javax.swing.JButton btnCreateHomeAddress;
     private javax.swing.JButton btnCreateLocalAddress;
     private javax.swing.JButton btnCreatePerson;
+    private javax.swing.JButton btnViewBank;
     private javax.swing.JButton btnViewHomeAddress;
     private javax.swing.JButton btnViewLocalAddress;
     private javax.swing.JButton btnViewPerson;

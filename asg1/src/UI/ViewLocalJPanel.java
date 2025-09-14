@@ -54,15 +54,15 @@ public class ViewLocalJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("View Local Address");
 
-        jLabel4.setText("state");
+        jLabel4.setText("State");
 
-        jLabel5.setText("name");
+        jLabel5.setText("Name");
 
-        jLabel6.setText("zipCode");
+        jLabel6.setText("ZipCode");
 
-        jLabel2.setText("street");
+        jLabel2.setText("Street");
 
-        jLabel3.setText("city");
+        jLabel3.setText("City");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

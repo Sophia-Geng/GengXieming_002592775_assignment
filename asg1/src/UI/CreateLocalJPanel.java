@@ -49,15 +49,15 @@ public class CreateLocalJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("Create Local Address");
 
-        jLabel4.setText("state");
+        jLabel4.setText("State");
 
-        jLabel5.setText("name");
+        jLabel5.setText("Name");
 
         jLabel6.setText("zipCode");
 
-        jLabel2.setText("street");
+        jLabel2.setText("Street");
 
-        jLabel3.setText("city");
+        jLabel3.setText("City");
 
         fieldLocalName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
