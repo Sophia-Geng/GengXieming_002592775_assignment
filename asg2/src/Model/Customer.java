@@ -15,10 +15,7 @@ public class Customer {
     String lastname ;
     String contact ;
     Order order;
-    
-    public Customer(){
-        order=new Order();
-    }
+
     
     public String getId() {
         return id;

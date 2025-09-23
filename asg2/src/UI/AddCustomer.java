@@ -6,6 +6,7 @@ package UI;
 import Model.Customer;
 import Model.CustomerDirectory;
 import Utils.JudCondition;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -146,6 +147,9 @@ public class AddCustomer extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        MainMenu.remove(this);
+        CardLayout layout=(CardLayout) MainMenu.getLayout();
+        layout.previous(MainMenu);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -167,7 +171,7 @@ public class AddCustomer extends javax.swing.JPanel {
        Customer c= customerdirectory.addCustomer();
        c.setContact(contact);
        c.setFirstname(firstName);
-       c.setId(contact);
+       c.setId(customerId);
        c.setLastname(lastName);
        
        
@@ -178,7 +182,7 @@ public class AddCustomer extends javax.swing.JPanel {
        
     
     
-    
+      
     }       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

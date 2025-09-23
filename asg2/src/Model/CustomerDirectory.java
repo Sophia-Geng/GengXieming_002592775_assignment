@@ -32,11 +32,12 @@ public class CustomerDirectory {
   }
   public Customer searchCustomer(String id){
       for(Customer o:customerlist){
-          if(o.getId().contains(id)){
+          if(o.getId().equals(id)){
               return o;
           }
       }
       return null;
   }
+  
     
 }

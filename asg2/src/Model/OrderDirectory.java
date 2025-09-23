@@ -22,11 +22,12 @@ public class OrderDirectory {
     public void setOrderlist(ArrayList<Order> orderlist) {
         this.orderlist = orderlist;
     }
-  public Order addOrder(){
-      Order o=new Order();
-      orderlist.add(o);
-      return o;
-  }
+  public Order addOrder(Product product,Customer customer) {
+    Order o = new Order(product, customer); 
+    orderlist.add(o);
+    return o;
+}
+
   public void deleteOrder(Order order){
       orderlist.remove(order);
   }

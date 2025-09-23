@@ -18,7 +18,18 @@ public class Order {
    String Status ; 
    Product product;
    Customer customer;
+   String customerId; 
+   String productId;
+   String productname;
+    private static int count = 1; 
+    public String getProductname() {
+        return productname;
+    }
 
+    public void setProductname(String productname) {
+        this.productname = productname;
+    }
+   
     public Customer getCustomer() {
         return customer;
     }
@@ -26,10 +37,27 @@ public class Order {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+   
   
-  public  Order(){
-      product=new Product();
-      customer=new Customer();
+  public  Order(Product product, Customer customer){
+        this.product = product;
+        this.customer = customer;
+        this.id= ""+count++;
   } 
   
     public String getId() {

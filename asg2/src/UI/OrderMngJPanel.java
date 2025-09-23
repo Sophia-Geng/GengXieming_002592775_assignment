@@ -4,7 +4,9 @@
  */
 package UI;
 
+import Model.CustomerDirectory;
 import Model.OrderDirectory;
+import Model.ProductDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -19,10 +21,14 @@ public class OrderMngJPanel extends javax.swing.JPanel {
      */
     private JPanel MainMenu;
     private OrderDirectory orderdirectory; 
-    public OrderMngJPanel(JPanel mainmenu, OrderDirectory directory) {
+     private CustomerDirectory customerdirectory;
+    private ProductDirectory productdirectory;
+    public OrderMngJPanel(JPanel mainmenu, OrderDirectory directoryo,CustomerDirectory directoryc, ProductDirectory directoryp) {
         initComponents();
         MainMenu=mainmenu;
-        orderdirectory=directory;
+        orderdirectory=directoryo;
+        customerdirectory = directoryc;
+        productdirectory = directoryp;
         populateTable();
         
     }
@@ -151,7 +157,14 @@ public class OrderMngJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ViewProductActionPerformed
 
     private void AddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductActionPerformed
-        // TODO add your handling code here:
+        AddOrder panel=new AddOrder(MainMenu,orderdirectory,customerdirectory,productdirectory);
+        MainMenu.add("AddOrder",panel);
+        
+        CardLayout layout=(CardLayout)MainMenu.getLayout();
+        layout.next(MainMenu);
+
+
+// TODO add your handling code here:
     }//GEN-LAST:event_AddProductActionPerformed
 
 

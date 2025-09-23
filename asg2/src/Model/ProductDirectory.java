@@ -34,7 +34,7 @@ public class ProductDirectory {
     
     public Product searchProduct(String id){
         for(Product p:productlist){
-            if(p.getId().contains(id)){
+            if(p.getId().equals(id)){
                 return p;
             }
         }

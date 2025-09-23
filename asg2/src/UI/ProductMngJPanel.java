@@ -143,7 +143,11 @@ public class ProductMngJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductActionPerformed
-        // TODO add your handling code here:
+         AddProduct panel=new AddProduct(MainMenu,productdirectory);
+        MainMenu.add("AddProduct",panel);
+        
+        CardLayout layout=(CardLayout)MainMenu.getLayout();
+        layout.next(MainMenu);        // TODO add your handling code here:
     }//GEN-LAST:event_AddProductActionPerformed
 
     private void SearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchProductActionPerformed

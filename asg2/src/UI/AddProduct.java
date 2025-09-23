@@ -7,6 +7,7 @@ package UI;
 import Model.Product;
 import Model.ProductDirectory;
 import Utils.JudCondition;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -54,6 +55,11 @@ public class AddProduct extends javax.swing.JPanel {
         Save = new javax.swing.JButton();
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("Add  a  Product");
@@ -158,12 +164,11 @@ public class AddProduct extends javax.swing.JPanel {
         String number = fieldNumber.getText();
         String prepTime = fieldPrepTime.getText();
 
-// 2. 校验必填项
+
     if (productId.isBlank() || productName.isBlank() || category.isBlank()
         || price.isBlank() || number.isBlank() || prepTime.isBlank()) {
     JOptionPane.showMessageDialog(this, "All fields are mandatory", "Error", JOptionPane.ERROR_MESSAGE);
 }
-// 3. 校验格式（数字 / 字母）
 else if (!JudCondition.isAlphabet(productName) || !JudCondition.isAlphabet(category)
         || !JudCondition.isNumeric(price) || !JudCondition.isNumeric(number)
         || !JudCondition.isNumeric(productId)) {
@@ -182,7 +187,7 @@ else {
     p.setNumber(Integer.parseInt(number));
     p.setPreparetime(Integer.parseInt(prepTime));
 
-    // 6. 清空文本框
+   
     fieldID.setText("");
     fieldName.setText("");
     fieldCategory.setText("");
@@ -191,6 +196,13 @@ else {
     fieldPrepTime.setText("");
 }
     }//GEN-LAST:event_SaveActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MainMenu.remove(this);
+        CardLayout layout=(CardLayout) MainMenu.getLayout();
+        layout.previous(MainMenu);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

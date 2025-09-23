@@ -22,6 +22,9 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     public MainJFrame() {
         initComponents();
+        productdirectory = new ProductDirectory();
+        orderdirectory = new OrderDirectory();
+        customerdirectory = new CustomerDirectory();
     }
 
     /**
@@ -112,7 +115,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProductMngActionPerformed
 
     private void btnOrderMngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderMngActionPerformed
-        OrderMngJPanel panel=new OrderMngJPanel(MainMenu,orderdirectory);
+        OrderMngJPanel panel=new OrderMngJPanel(MainMenu,orderdirectory,customerdirectory,productdirectory);
         MainMenu.add("OrderMngJpanel",panel);
         
         CardLayout layout=(CardLayout)MainMenu.getLayout();

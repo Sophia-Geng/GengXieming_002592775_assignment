@@ -4,9 +4,11 @@
  */
 package UI;
 
+import Model.Customer;
 import Model.CustomerDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -41,8 +43,8 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
         ViewProduct = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        AddProduct = new javax.swing.JButton();
+        tblCustomer = new javax.swing.JTable();
+        AddCustmoer = new javax.swing.JButton();
 
         DeleteProduct.setText("Delete");
 
@@ -63,7 +65,7 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("Customer");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -82,12 +84,12 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCustomer);
 
-        AddProduct.setText("Add ");
-        AddProduct.addActionListener(new java.awt.event.ActionListener() {
+        AddCustmoer.setText("Add ");
+        AddCustmoer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddProductActionPerformed(evt);
+                AddCustmoerActionPerformed(evt);
             }
         });
 
@@ -99,7 +101,7 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(DeleteProduct, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                    .addComponent(AddProduct, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(AddCustmoer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(160, 160, 160)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -128,7 +130,7 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddProduct)
+                    .addComponent(AddCustmoer)
                     .addComponent(ViewProduct))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -147,23 +149,38 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_ViewProductActionPerformed
 
-    private void AddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddProductActionPerformed
+    private void AddCustmoerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCustmoerActionPerformed
+        AddCustomer panel=new AddCustomer(MainMenu,customerdirectory);
+        MainMenu.add("AddCustomer",panel);
+        
+        CardLayout layout=(CardLayout)MainMenu.getLayout();
+        layout.next(MainMenu); 
+    }//GEN-LAST:event_AddCustmoerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddProduct;
+    private javax.swing.JButton AddCustmoer;
     private javax.swing.JButton DeleteProduct;
     private javax.swing.JButton SearchProduct;
     private javax.swing.JButton ViewProduct;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblCustomer;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblCustomer.getModel();
+         model.setRowCount(0);
+    for(Customer c : customerdirectory.getCustomerlist()){
+    Object[] row = new Object[4];
+    row[0] = c.getId();                         
+    row[1] = c.getFirstname();      
+    row[2] = c.getLastname();
+    row[3] = c.getContact(); 
+    model.addRow(row);                  
+}
+
         
     }
 }
