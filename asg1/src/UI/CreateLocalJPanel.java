@@ -142,13 +142,13 @@ public class CreateLocalJPanel extends javax.swing.JPanel {
 
     private void btnLocalSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalSaveActionPerformed
         // TODO add your handling code here:
-        
+         // Retrieve user input from the text fields
         String name=fieldLocalName.getText();
         String city=fieldLocalCity.getText();
         String state=fieldLocalState.getText();
         String street=fieldLocalStreet.getText();
         String zipCode=fieldLocalzipCode.getText();
-        
+        //Store the retrieved data into the Person object
         localaddress.setName(name);
 localaddress.setCity(city);
 localaddress.setState(state);
@@ -156,7 +156,7 @@ localaddress.setStreet(street);
 localaddress.setZipCode(zipCode);
         
       JOptionPane.showMessageDialog(this,"Successfully saved!");   
-        
+        //Clear the text fields for the next input
         fieldLocalCity.setText("");
 fieldLocalName.setText("");
 fieldLocalState.setText("");

@@ -156,12 +156,13 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
 
     private void CreatePersonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreatePersonSaveActionPerformed
         // TODO add your handling code here:
+        // Retrieve user input from the text fields
         String name = fieldPersonName.getText();
         String age = fieldPersonAge.getText();
         String email = fieldPersonEmail.getText();
         String gender = fieldPersonGender.getText();
         String phone = fieldPersonPhone.getText();
-          
+          //Store the retrieved data into the Person object
         person.setName(name);
         person.setAge(age);
         person.setEmail(email);
@@ -169,7 +170,7 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
         person.setPhone(phone);
         
         JOptionPane.showMessageDialog(this,"Successfully saved!");
-             
+             //Clear the text fields for the next input
         fieldPersonName.setText("");
         fieldPersonName.setText("");
         fieldPersonAge.setText("");

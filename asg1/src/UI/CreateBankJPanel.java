@@ -165,7 +165,7 @@ public class CreateBankJPanel extends javax.swing.JPanel {
         
         JOptionPane.showMessageDialog(this,"Successfully saved!");
         
-        
+        //Clear the text fields for the next input
         fieldHolderName.setText("");
         fieldAccountNumber.setText("");
         fieldAccountType.setText("");

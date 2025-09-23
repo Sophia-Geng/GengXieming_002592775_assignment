@@ -169,7 +169,7 @@ public class CreateHomeJPanel extends javax.swing.JPanel {
         
         
         JOptionPane.showMessageDialog(this,"Successfully saved!");
-        
+        //Clear the text fields for the next input
         fieldHomeCity.setText("");
         fieldHomeName.setText("");
         fieldHomeState.setText("");
