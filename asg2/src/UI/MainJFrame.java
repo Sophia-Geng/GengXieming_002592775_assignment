@@ -6,6 +6,7 @@ package UI;
 
 import Model.OrderDirectory;
 import Model.ProductDirectory;
+import Model.CustomerDirectory;
 import java.awt.CardLayout;
 
 /**
@@ -119,8 +120,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderMngActionPerformed
 
     private void btnCustomerMngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerMngActionPerformed
-        CustomerMngJPanel panel=new CustomerMngJPanel(MainMenu,accountDirectory);
-        MainMenu.add("AccountMngWorkArea",panel);
+        CustomerMngJPanel panel=new CustomerMngJPanel(MainMenu,customerdirectory);
+        MainMenu.add("CustomerMngJPanel",panel);
         
         CardLayout layout=(CardLayout)MainMenu.getLayout();
         layout.next(MainMenu);  // TODO add your handling code here:

@@ -4,6 +4,10 @@
  */
 package UI;
 
+import Model.OrderDirectory;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author DELL
@@ -13,8 +17,12 @@ public class ViewOrder extends javax.swing.JPanel {
     /**
      * Creates new form ViewOrder
      */
-    public ViewOrder() {
+     private JPanel MainMenu;
+    private OrderDirectory orderdirectory;
+    public ViewOrder(JPanel mainmenu, OrderDirectory directory) {
         initComponents();
+        MainMenu=mainmenu;
+        orderdirectory=directory;
     }
 
     /**
@@ -46,6 +54,11 @@ public class ViewOrder extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Product");
 
@@ -95,12 +108,10 @@ public class ViewOrder extends javax.swing.JPanel {
                                                         .addComponent(jLabel2)))
                                                 .addComponent(jLabel4))
                                             .addComponent(jLabel7)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel8))
-                                        .addGap(49, 49, 49)))
-                                .addGap(61, 61, 61)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel8)))
+                                .addGap(110, 110, 110)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,6 +179,13 @@ public class ViewOrder extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MainMenu.remove(this);
+        CardLayout layout=(CardLayout) MainMenu.getLayout();
+        layout.previous(MainMenu);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

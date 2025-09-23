@@ -4,6 +4,12 @@
  */
 package UI;
 
+import Model.Product;
+import Model.ProductDirectory;
+import Utils.JudCondition;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author DELL
@@ -13,8 +19,13 @@ public class AddProduct extends javax.swing.JPanel {
     /**
      * Creates new form AddProduct
      */
-    public AddProduct() {
+    private JPanel MainMenu;
+    private ProductDirectory productdirectory;
+    
+    public AddProduct(JPanel mainmenu,ProductDirectory directory) {
         initComponents();
+        MainMenu=mainmenu;
+        productdirectory=directory;
     }
 
     /**
@@ -34,13 +45,13 @@ public class AddProduct extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        fieldName = new javax.swing.JTextField();
+        fieldID = new javax.swing.JTextField();
+        fieldCategory = new javax.swing.JTextField();
+        fieldPrice = new javax.swing.JTextField();
+        fieldNumber = new javax.swing.JTextField();
+        fieldPrepTime = new javax.swing.JTextField();
+        Save = new javax.swing.JButton();
 
         jButton1.setText("Back");
 
@@ -59,7 +70,12 @@ public class AddProduct extends javax.swing.JPanel {
 
         jLabel7.setText("PrepareTime");
 
-        jButton2.setText("Save");
+        Save.setText("Save");
+        Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -72,7 +88,7 @@ public class AddProduct extends javax.swing.JPanel {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(149, 149, 149)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
+                            .addComponent(Save)
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
@@ -89,12 +105,12 @@ public class AddProduct extends javax.swing.JPanel {
                                     .addComponent(jLabel4))
                                 .addGap(137, 137, 137)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField5)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))))))
+                                    .addComponent(fieldName)
+                                    .addComponent(fieldID)
+                                    .addComponent(fieldCategory)
+                                    .addComponent(fieldPrice)
+                                    .addComponent(fieldNumber)
+                                    .addComponent(fieldPrepTime, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))))))
                 .addContainerGap(230, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -107,37 +123,85 @@ public class AddProduct extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPrepTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
-                .addComponent(jButton2)
+                .addComponent(Save)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+        String productId = fieldID.getText();
+        String productName = fieldName.getText();
+        String category = fieldCategory.getText();
+        String price = fieldPrice.getText();
+        String number = fieldNumber.getText();
+        String prepTime = fieldPrepTime.getText();
+
+// 2. 校验必填项
+    if (productId.isBlank() || productName.isBlank() || category.isBlank()
+        || price.isBlank() || number.isBlank() || prepTime.isBlank()) {
+    JOptionPane.showMessageDialog(this, "All fields are mandatory", "Error", JOptionPane.ERROR_MESSAGE);
+}
+// 3. 校验格式（数字 / 字母）
+else if (!JudCondition.isAlphabet(productName) || !JudCondition.isAlphabet(category)
+        || !JudCondition.isNumeric(price) || !JudCondition.isNumeric(number)
+        || !JudCondition.isNumeric(productId)) {
+    JOptionPane.showMessageDialog(this, "The content you entered is invalid", "Error", JOptionPane.ERROR_MESSAGE);
+} 
+else {
+   
+    JOptionPane.showMessageDialog(this, "Successfully created!", "Create", JOptionPane.INFORMATION_MESSAGE);
+
+    
+    Product p = productdirectory.addProduct(); 
+    p.setId(productId);
+    p.setName(productName);
+    p.setCategory(category);
+    p.setPrice(Double.parseDouble(price));
+    p.setNumber(Integer.parseInt(number));
+    p.setPreparetime(Integer.parseInt(prepTime));
+
+    // 6. 清空文本框
+    fieldID.setText("");
+    fieldName.setText("");
+    fieldCategory.setText("");
+    fieldPrice.setText("");
+    fieldNumber.setText("");
+    fieldPrepTime.setText("");
+}
+    }//GEN-LAST:event_SaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Save;
+    private javax.swing.JTextField fieldCategory;
+    private javax.swing.JTextField fieldID;
+    private javax.swing.JTextField fieldName;
+    private javax.swing.JTextField fieldNumber;
+    private javax.swing.JTextField fieldPrepTime;
+    private javax.swing.JTextField fieldPrice;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -145,11 +209,5 @@ public class AddProduct extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,7 @@ public class Product {
     String category;
     double price;
     int number;
-    Date preparetime;
+    int preparetime;
     
     
     
@@ -60,11 +60,11 @@ public class Product {
         this.number = number;
     }
 
-    public Date getPreparetime() {
+    public int getPreparetime() {
         return preparetime;
     }
 
-    public void setPreparetime(Date preparetime) {
+    public void setPreparetime(int preparetime) {
         this.preparetime = preparetime;
     }
 
