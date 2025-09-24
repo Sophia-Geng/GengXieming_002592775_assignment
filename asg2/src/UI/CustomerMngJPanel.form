@@ -19,19 +19,19 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="DeleteProduct" alignment="0" pref="100" max="32767" attributes="0"/>
+                  <Component id="DeleteCustomer" alignment="0" pref="100" max="32767" attributes="0"/>
                   <Component id="AddCustmoer" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="SearchProduct" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="SearchCustomer" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace pref="129" max="32767" attributes="0"/>
                       <Component id="jTextField1" min="-2" pref="167" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="ViewProduct" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="ViewCustomer" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -58,12 +58,12 @@
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="AddCustmoer" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ViewProduct" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ViewCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="DeleteProduct" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="SearchProduct" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DeleteCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="SearchCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="91" max="32767" attributes="0"/>
@@ -72,30 +72,30 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="DeleteProduct">
+    <Component class="javax.swing.JButton" name="DeleteCustomer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteProductActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteCustomerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="SearchProduct">
+    <Component class="javax.swing.JButton" name="SearchCustomer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SearchProductActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SearchCustomerActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">
     </Component>
-    <Component class="javax.swing.JButton" name="ViewProduct">
+    <Component class="javax.swing.JButton" name="ViewCustomer">
       <Properties>
         <Property name="text" type="java.lang.String" value="View"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewProductActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewCustomerActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

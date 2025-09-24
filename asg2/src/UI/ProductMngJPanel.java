@@ -165,16 +165,22 @@ public class ProductMngJPanel extends javax.swing.JPanel {
     private void ViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductActionPerformed
          int selectedRow=tblProduct.getSelectedRow();
         if(selectedRow>=0){
-            Product selectedProduct=(Product)tblProduct.getValueAt(selectedRow, 0);
             
-            ViewProduct panel=new ViewProduct(MainMenu, productdirectory, selectedProduct);
-            MainMenu.add("ViewProduct",panel);
-            CardLayout layout=(CardLayout) MainMenu.getLayout();
+            // 获取选中行的Product ID（第1列）
+             String productId = (String)tblProduct.getValueAt(selectedRow, 1);
+            // 通过ID查找Product对象
+             Product selectedProduct = productdirectory.searchProduct(productId);
+           if(selectedProduct != null){
+            ViewProduct panel = new ViewProduct(MainMenu, productdirectory, selectedProduct);
+            MainMenu.add("ViewProduct", panel);
+            CardLayout layout = (CardLayout) MainMenu.getLayout();
             layout.next(MainMenu);
+        } else {
+            JOptionPane.showMessageDialog(this, "Product not found!", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-            JOptionPane.showMessageDialog(null, "please select an Product from the list", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select a product from the list", "Warning", JOptionPane.WARNING_MESSAGE);
+    }
     }//GEN-LAST:event_ViewProductActionPerformed
 
     private void DeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteProductActionPerformed

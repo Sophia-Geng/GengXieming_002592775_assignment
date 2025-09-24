@@ -161,7 +161,28 @@ public class OrderMngJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_SearchProductActionPerformed
 
     private void ViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductActionPerformed
-        // TODO add your handling code here:
+       int selectedRow=tblOrder.getSelectedRow();
+        if(selectedRow>=0){
+            
+            // 获取选中行的Product ID（第1列）
+             String productId = (String)tblOrder.getValueAt(selectedRow, 0);
+            // 通过ID查找Product对象
+             Order selectedProduct = orderdirectory.searchOrder(productId);
+           if(selectedProduct != null){
+            ViewOrder panel = new  ViewOrder(MainMenu, orderdirectory, selectedProduct);
+            MainMenu.add("ViewOrder", panel);
+            CardLayout layout = (CardLayout) MainMenu.getLayout();
+            layout.next(MainMenu);
+        } else {
+            JOptionPane.showMessageDialog(this, "Order not found!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select a Order from the list", "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+        
+
+
+// TODO add your handling code here:
     }//GEN-LAST:event_ViewProductActionPerformed
 
     private void AddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductActionPerformed

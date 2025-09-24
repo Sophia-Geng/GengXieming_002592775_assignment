@@ -38,33 +38,33 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        DeleteProduct = new javax.swing.JButton();
-        SearchProduct = new javax.swing.JButton();
+        DeleteCustomer = new javax.swing.JButton();
+        SearchCustomer = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        ViewProduct = new javax.swing.JButton();
+        ViewCustomer = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomer = new javax.swing.JTable();
         AddCustmoer = new javax.swing.JButton();
 
-        DeleteProduct.setText("Delete");
-        DeleteProduct.addActionListener(new java.awt.event.ActionListener() {
+        DeleteCustomer.setText("Delete");
+        DeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteProductActionPerformed(evt);
+                DeleteCustomerActionPerformed(evt);
             }
         });
 
-        SearchProduct.setText("Search");
-        SearchProduct.addActionListener(new java.awt.event.ActionListener() {
+        SearchCustomer.setText("Search");
+        SearchCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchProductActionPerformed(evt);
+                SearchCustomerActionPerformed(evt);
             }
         });
 
-        ViewProduct.setText("View");
-        ViewProduct.addActionListener(new java.awt.event.ActionListener() {
+        ViewCustomer.setText("View");
+        ViewCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewProductActionPerformed(evt);
+                ViewCustomerActionPerformed(evt);
             }
         });
 
@@ -106,17 +106,17 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(DeleteProduct, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(DeleteCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(AddCustmoer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(160, 160, 160)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(SearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ViewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ViewCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(318, 318, 318)
@@ -137,34 +137,40 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddCustmoer)
-                    .addComponent(ViewProduct))
+                    .addComponent(ViewCustomer))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DeleteProduct)
-                    .addComponent(SearchProduct)
+                    .addComponent(DeleteCustomer)
+                    .addComponent(SearchCustomer)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchProductActionPerformed
+    private void SearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchCustomerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SearchProductActionPerformed
+    }//GEN-LAST:event_SearchCustomerActionPerformed
 
-    private void ViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductActionPerformed
-        int selectedRow=tblCustomer.getSelectedRow();
+    private void ViewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewCustomerActionPerformed
+  int selectedRow=tblCustomer.getSelectedRow();
         if(selectedRow>=0){
-            Customer selectedAccount=(Customer)tblCustomer.getValueAt(selectedRow, 0);
             
-            ViewProduct panel=new ViewProduct(MainMenu, customerdirectory, selectedAccount);
-            MainMenu.add("ViewAccountJPanel",panel);
-            CardLayout layout=(CardLayout) MainMenu.getLayout();
+            // 获取选中行的Product ID（第1列）
+             String productId = (String)tblCustomer.getValueAt(selectedRow, 1);
+            // 通过ID查找Product对象
+             Customer selectedProduct = CustomerDirectory.searchCustomer(productId);
+           if(selectedProduct != null){
+            ViewProduct panel = new ViewProduct(MainMenu, customerdirectory, selectedProduct);
+            MainMenu.add("ViewProduct", panel);
+            CardLayout layout = (CardLayout) MainMenu.getLayout();
             layout.next(MainMenu);
+        } else {
+            JOptionPane.showMessageDialog(this, "Product not found!", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-            JOptionPane.showMessageDialog(null, "please select an account from the list", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_ViewProductActionPerformed
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select a product from the list", "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+    }//GEN-LAST:event_ViewCustomerActionPerformed
 
     private void AddCustmoerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCustmoerActionPerformed
         AddCustomer panel=new AddCustomer(MainMenu,customerdirectory);
@@ -174,7 +180,7 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
         layout.next(MainMenu); 
     }//GEN-LAST:event_AddCustmoerActionPerformed
 
-    private void DeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteProductActionPerformed
+    private void DeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCustomerActionPerformed
             int selectedRow = tblCustomer.getSelectedRow();
         if(selectedRow >= 0){
         int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure to delete the customer?", 
@@ -194,14 +200,14 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
     } else {
         JOptionPane.showMessageDialog(this, "Please select an customer to delete!");
     } 
-    }//GEN-LAST:event_DeleteProductActionPerformed
+    }//GEN-LAST:event_DeleteCustomerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCustmoer;
-    private javax.swing.JButton DeleteProduct;
-    private javax.swing.JButton SearchProduct;
-    private javax.swing.JButton ViewProduct;
+    private javax.swing.JButton DeleteCustomer;
+    private javax.swing.JButton SearchCustomer;
+    private javax.swing.JButton ViewCustomer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;

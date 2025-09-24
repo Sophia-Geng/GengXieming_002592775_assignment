@@ -54,12 +54,12 @@ public class ViewProduct extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         fieldPrepTime = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        Save = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        Update = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -75,10 +75,10 @@ public class ViewProduct extends javax.swing.JPanel {
 
         jLabel3.setText("Product ID");
 
-        Save.setText("Save");
-        Save.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -90,10 +90,10 @@ public class ViewProduct extends javax.swing.JPanel {
 
         jLabel7.setText("PrepareTime");
 
-        Update.setText("Update");
-        Update.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -131,9 +131,9 @@ public class ViewProduct extends javax.swing.JPanel {
                                     .addComponent(fieldPrepTime, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(210, 210, 210)
-                        .addComponent(Save)
+                        .addComponent(btnSave)
                         .addGap(158, 158, 158)
-                        .addComponent(Update)))
+                        .addComponent(btnUpdate)))
                 .addContainerGap(211, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -169,16 +169,16 @@ public class ViewProduct extends javax.swing.JPanel {
                     .addComponent(fieldPrepTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Save)
-                    .addComponent(Update))
+                    .addComponent(btnSave)
+                    .addComponent(btnUpdate))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
             setViewMode();
-    }//GEN-LAST:event_UpdateActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          MainMenu.remove(this);
@@ -191,7 +191,7 @@ public class ViewProduct extends javax.swing.JPanel {
         layout.previous(MainMenu);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         String category=fieldCategory.getText();
         String number=fieldNumber.getText();
@@ -215,12 +215,12 @@ public class ViewProduct extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Account successfully updated", "warning", JOptionPane.WARNING_MESSAGE);
         
         refreshTextFields();
-    }//GEN-LAST:event_SaveActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Save;
-    private javax.swing.JButton Update;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField fieldCategory;
     private javax.swing.JTextField fieldNumber;
     private javax.swing.JTextField fieldPrepTime;
@@ -239,7 +239,7 @@ public class ViewProduct extends javax.swing.JPanel {
 
     private void populateFields() {
      if(product!=null){
-          fieldCategory.setText(product.getCategory());
+    fieldCategory.setText(product.getCategory());
     fieldProductID.setText(product.getId());
     fieldProductname.setText(product.getName());
     fieldPrepTime.setText(String.valueOf(product.getPreparetime()));
@@ -249,10 +249,28 @@ public class ViewProduct extends javax.swing.JPanel {
     }
 
     private void setViewMode() {
-      
+      fieldCategory.setEnabled(true);
+fieldProductID.setEnabled(true);
+fieldProductname.setEnabled(true);
+fieldPrepTime.setEnabled(true);
+fieldNumber.setEnabled(true);
+fieldPrice.setEnabled(true);
+
+btnSave.setEnabled(true);
+btnUpdate.setEnabled(false);
+
     }
 
     private void refreshTextFields() {
-      
+      fieldCategory.setEnabled(false);
+fieldProductID.setEnabled(false);
+fieldProductname.setEnabled(false);
+fieldPrepTime.setEnabled(false);
+fieldNumber.setEnabled(false);
+fieldPrice.setEnabled(false);
+
+btnSave.setEnabled(false);
+btnUpdate.setEnabled(true);
+
     }
 }

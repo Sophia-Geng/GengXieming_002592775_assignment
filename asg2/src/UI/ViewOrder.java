@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Model.Order;
 import Model.OrderDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -19,10 +20,12 @@ public class ViewOrder extends javax.swing.JPanel {
      */
      private JPanel MainMenu;
     private OrderDirectory orderdirectory;
-    public ViewOrder(JPanel mainmenu, OrderDirectory directory) {
+    private Order order;
+    public ViewOrder(JPanel mainmenu, OrderDirectory directory,Order order1) {
         initComponents();
         MainMenu=mainmenu;
         orderdirectory=directory;
+        order=order1;
     }
 
     /**
@@ -72,7 +75,7 @@ public class ViewOrder extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("View  a  Order");
 
-        jLabel2.setText("Product IDID");
+        jLabel2.setText("Product ID");
 
         jLabel3.setText("Date");
 
@@ -131,7 +134,7 @@ public class ViewOrder extends javax.swing.JPanel {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(153, 153, 153)
                         .addComponent(jLabel1)))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
