@@ -129,7 +129,13 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderMngActionPerformed
 
     private void btnCustomerMngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerMngActionPerformed
-        CustomerMngJPanel panel=new CustomerMngJPanel(MainMenu,customerdirectory);
+      CustomerMngJPanel panel = new CustomerMngJPanel(
+    MainMenu,
+    customerdirectory,
+    orderdirectory,
+    productdirectory
+);
+
         MainMenu.add("CustomerMngJPanel",panel);
         
         CardLayout layout=(CardLayout)MainMenu.getLayout();

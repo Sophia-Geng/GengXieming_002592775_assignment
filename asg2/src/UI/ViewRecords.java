@@ -6,9 +6,14 @@ package UI;
 
 import Model.Customer;
 import Model.CustomerDirectory;
+import Model.Order;
+import Model.OrderDirectory;
+import Model.Product;
+import Model.ProductDirectory;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,32 +27,24 @@ public class ViewRecords extends javax.swing.JPanel {
     private JPanel MainMenu;
     private CustomerDirectory customerdirectory;
     private Customer customer;
+    private OrderDirectory orderdirectory;
+    private ProductDirectory productdirectory;
     
-    public ViewRecords(JPanel container, CustomerDirectory customerDirectory , Customer customer1) {
+    public ViewRecords(JPanel container, CustomerDirectory customerDirectory , Customer customer1,OrderDirectory orderDirectory,ProductDirectory productDirectory) {
         initComponents();
         MainMenu=container;
         customerdirectory=customerDirectory;
         customer=customer1;
+        productdirectory=productDirectory;
+        orderdirectory=orderDirectory;
+        
         
         fieldFirstname.setText(customer.getFirstname());
         fieldcontact.setText(customer.getContact());
         fieldid.setText(customer.getId());
         fieldlastname.setText(customer.getLastname());
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        populateTable();    
     }
 
     /**
@@ -60,7 +57,7 @@ public class ViewRecords extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblRecords = new javax.swing.JTable();
         fieldFirstname = new javax.swing.JTextField();
         fieldlastname = new javax.swing.JTextField();
         fieldcontact = new javax.swing.JTextField();
@@ -71,7 +68,7 @@ public class ViewRecords extends javax.swing.JPanel {
         fieldid = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblRecords.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -96,7 +93,7 @@ public class ViewRecords extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblRecords);
 
         jLabel2.setText("Customer ID");
 
@@ -189,6 +186,25 @@ public class ViewRecords extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblRecords;
     // End of variables declaration//GEN-END:variables
-}
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblRecords.getModel();
+        model.setRowCount(0);
+    for(Order o : orderdirectory.getOrderlist()){
+      if (o.getCustomerId().equals(customer.getId())) {
+            Object[] row = new Object[5];
+            row[0] = o.getProductId();                           
+            row[1] = o.getProductname();
+            
+            row[2] = o.getId();
+            row[3] = o.getTime();                        
+                            
+            Product p = productdirectory.searchProduct(o.getProductId());
+            row[4] = p.getPrice();                    
+                           
+    model.addRow(row); 
+    }
+    }
+}}

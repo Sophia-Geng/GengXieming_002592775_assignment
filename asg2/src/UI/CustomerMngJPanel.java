@@ -6,6 +6,8 @@ package UI;
 
 import Model.Customer;
 import Model.CustomerDirectory;
+import Model.OrderDirectory;
+import Model.ProductDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,12 +24,20 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
      */
     private JPanel MainMenu;
     private CustomerDirectory customerdirectory; 
-    public CustomerMngJPanel(JPanel mainmenu, CustomerDirectory directory) {
-        initComponents();
-        MainMenu=mainmenu;
-        customerdirectory=directory;
-        populateTable();
-    }
+    private OrderDirectory orderdirectory;
+    private ProductDirectory productdirectory;
+    public CustomerMngJPanel(JPanel mainmenu, 
+                         CustomerDirectory customerDirectory,
+                         OrderDirectory orderDirectory,
+                         ProductDirectory productDirectory) {
+    initComponents();
+    MainMenu = mainmenu;
+    customerdirectory = customerDirectory;
+    orderdirectory = orderDirectory;
+    productdirectory = productDirectory;
+    populateTable();
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,7 +164,7 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
             
             if(found !=null){
                 
-                ViewRecords panel =new ViewRecords(MainMenu, customerdirectory, found);
+                ViewRecords panel =new ViewRecords(MainMenu, customerdirectory, found,orderdirectory,productdirectory);
                 MainMenu.add("ViewRecords",panel);
                 CardLayout layout =(CardLayout)MainMenu.getLayout();
                 layout.next(MainMenu);    
@@ -178,7 +188,7 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
             // 通过ID查找Product对象
              Customer selectedProduct = customerdirectory.searchCustomer(Id);
            if(selectedProduct != null){
-            ViewRecords panel = new ViewRecords(MainMenu, customerdirectory, selectedProduct);
+            ViewRecords panel = new ViewRecords(MainMenu, customerdirectory, selectedProduct,orderdirectory,productdirectory);
             MainMenu.add("ViewRecords", panel);
             CardLayout layout = (CardLayout) MainMenu.getLayout();
             layout.next(MainMenu);
