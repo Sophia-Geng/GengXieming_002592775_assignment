@@ -78,7 +78,7 @@ public class AddOrder extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("Add  a  Order");
 
-        jLabel2.setText("Product ID");
+        jLabel2.setText("Order ID");
 
         jLabel3.setText("Date");
 
@@ -160,9 +160,7 @@ public class AddOrder extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3))
+                            .addComponent(jLabel3)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel7)
@@ -263,9 +261,6 @@ public class AddOrder extends javax.swing.JPanel {
     JOptionPane.showMessageDialog(this, "All fields are mandatory", "Error", JOptionPane.ERROR_MESSAGE);
 } 
 
-else if (!JudCondition.isNumeric(customerId) || !JudCondition.isNumeric(productId)) {
-    JOptionPane.showMessageDialog(this, "The content you entered is invalid", "Error", JOptionPane.ERROR_MESSAGE);
-} 
 else if (customerdirectory.searchCustomer(customerId)==null||productdirectory.searchProduct(productId)==null){
     JOptionPane.showMessageDialog(this, "Please entered the right id", "Error", JOptionPane.ERROR_MESSAGE);
 }

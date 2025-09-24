@@ -4,9 +4,12 @@
  */
 package UI;
 
+import Model.Product;
 import Model.ProductDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,7 +40,7 @@ public class ProductMngJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProduct = new javax.swing.JTable();
         AddProduct = new javax.swing.JButton();
         DeleteProduct = new javax.swing.JButton();
         SearchProduct = new javax.swing.JButton();
@@ -49,7 +52,7 @@ public class ProductMngJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("Product");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -68,7 +71,7 @@ public class ProductMngJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblProduct);
 
         AddProduct.setText("Add ");
         AddProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +81,11 @@ public class ProductMngJPanel extends javax.swing.JPanel {
         });
 
         DeleteProduct.setText("Delete");
+        DeleteProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteProductActionPerformed(evt);
+            }
+        });
 
         SearchProduct.setText("Search");
         SearchProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -155,8 +163,41 @@ public class ProductMngJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_SearchProductActionPerformed
 
     private void ViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductActionPerformed
-        // TODO add your handling code here:
+         int selectedRow=tblProduct.getSelectedRow();
+        if(selectedRow>=0){
+            Product selectedProduct=(Product)tblProduct.getValueAt(selectedRow, 0);
+            
+            ViewProduct panel=new ViewProduct(MainMenu, productdirectory, selectedProduct);
+            MainMenu.add("ViewProduct",panel);
+            CardLayout layout=(CardLayout) MainMenu.getLayout();
+            layout.next(MainMenu);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "please select an Product from the list", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_ViewProductActionPerformed
+
+    private void DeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteProductActionPerformed
+       int selectedRow = tblProduct.getSelectedRow();
+        if(selectedRow >= 0){
+        int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure to delete the Product?", 
+                                                        "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            String productId = (String)tblProduct.getValueAt(selectedRow, 1);
+            Product selectedProduct = productdirectory.searchProduct(productId);
+            
+            if(selectedProduct != null){
+                productdirectory.deleteProduct(selectedProduct);
+                populateTable();
+                JOptionPane.showMessageDialog(this, "Product deleted successfully!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Product not found!");
+            }
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select an Product to delete!");
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteProductActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -166,11 +207,28 @@ public class ProductMngJPanel extends javax.swing.JPanel {
     private javax.swing.JButton ViewProduct;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblProduct;
     // End of variables declaration//GEN-END:variables
 
-      private void populateTable() {
-        
+        void populateTable() {
+         DefaultTableModel model = (DefaultTableModel) tblProduct.getModel();
+         model.setRowCount(0);
+    for(Product p : productdirectory.getProductlist()){
+    Object[] row = new Object[6];
+    row[0] = p.getName();
+    row[1] = p.getId();
+    row[2] = p.getCategory();
+    row[3] = p.getPrice();
+    row[4] = p.getNumber();      
+    row[5] = p.getPreparetime();
+    model.addRow(row); 
     }
+}
+@Override
+    public void setVisible(boolean visible) {
+    super.setVisible(visible);
+    if (visible) {
+        populateTable(); // 每次显示时刷新
+    }}
 }

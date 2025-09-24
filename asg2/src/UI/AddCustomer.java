@@ -147,6 +147,7 @@ public class AddCustomer extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        
         MainMenu.remove(this);
         CardLayout layout=(CardLayout) MainMenu.getLayout();
         layout.previous(MainMenu);

@@ -4,10 +4,14 @@
  */
 package UI;
 
+import Model.Customer;
 import Model.OrderDirectory;
 import Model.ProductDirectory;
 import Model.CustomerDirectory;
+import Model.Order;
+import Model.Product;
 import java.awt.CardLayout;
+import java.util.Date;
 
 /**
  *
@@ -20,11 +24,13 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+     
     public MainJFrame() {
         initComponents();
         productdirectory = new ProductDirectory();
         orderdirectory = new OrderDirectory();
         customerdirectory = new CustomerDirectory();
+        initializeData();
     }
 
     /**
@@ -173,4 +179,122 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void initializeData() {
+    Customer c1 = customerdirectory.addCustomer();
+    c1.setId("C001");
+    c1.setFirstname("John");
+    c1.setLastname("Smith");
+    c1.setContact("1234567890");
+    
+    Customer c2 = customerdirectory.addCustomer();
+    c2.setId("C002");
+    c2.setFirstname("Alice");
+    c2.setLastname("Johnson");
+    c2.setContact("2345678901");
+   
+    Customer c3 = customerdirectory.addCustomer();
+    c3.setId("C003");
+    c3.setFirstname("Bob");
+    c3.setLastname("Brown");
+    c3.setContact("3456789012");
+    
+    Customer c4 = customerdirectory.addCustomer();
+    c4.setId("C004");
+    c4.setFirstname("Emma");
+    c4.setLastname("Davis");
+    c4.setContact("4567890123");
+   
+    Customer c5 = customerdirectory.addCustomer();
+    c5.setId("C005");
+    c5.setFirstname("Michael");
+    c5.setLastname("Wilson");
+    c5.setContact("5678901234");
+    
+    
+    Product p1 = productdirectory.addProduct();
+    p1.setId("P001");
+    p1.setName("Americano");
+    p1.setCategory("Coffee");
+    p1.setPrice(3.50);
+    p1.setNumber(50);
+    p1.setPreparetime(3);
+    
+    
+    Product p2 = productdirectory.addProduct();
+    p2.setId("P002");
+    p2.setName("Latte");
+    p2.setCategory("Coffee");
+    p2.setPrice(4.50);
+    p2.setNumber(30);
+    p2.setPreparetime(5);
+    
+   
+    Product p3 = productdirectory.addProduct();
+    p3.setId("P003");
+    p3.setName("Green Tea");
+    p3.setCategory("Tea");
+    p3.setPrice(2.50);
+    p3.setNumber(40);
+    p3.setPreparetime(2);
+    
+   
+    Product p4 = productdirectory.addProduct();
+    p4.setId("P004");
+    p4.setName("Chicken Sandwich");
+    p4.setCategory("Sandwich");
+    p4.setPrice(6.50);
+    p4.setNumber(25);
+    p4.setPreparetime(8);
+    
+  
+    Product p5 = productdirectory.addProduct();
+    p5.setId("P005");
+    p5.setName("Croissant");
+    p5.setCategory("Pastry");
+    p5.setPrice(3.00);
+    p5.setNumber(35);
+    p5.setPreparetime(2);
+    
+    Product p6 = productdirectory.addProduct();
+    p6.setId("P006");
+    p6.setName("Chocolate Cake");
+    p6.setCategory("Dessert");
+    p6.setPrice(5.50);
+    p6.setNumber(20);
+    p6.setPreparetime(1);
+    
+    Order o1 = orderdirectory.addOrder(p1, c1);
+    o1.setCustomerId("C001");
+    o1.setProductId("P001");
+    o1.setTime(new Date());
+    o1.setType("Dine-in");
+    o1.setPaymethod("Card");
+    o1.setStatus("Completed");
+    o1.setProductname("Americano");
+    
+    
+    Order o2 = orderdirectory.addOrder(p2, c2);
+    o2.setCustomerId("C002");
+    o2.setProductId("P002");
+    o2.setTime(new Date());
+    o2.setType("Takeout");
+    o2.setPaymethod("Cash");
+    o2.setStatus("Ready");
+    o2.setProductname("Latte");
+    
+    Order o3 = orderdirectory.addOrder(p3, c3);
+    o3.setCustomerId("C003");
+    o3.setProductId("P003");
+    o3.setTime(new Date());
+    o3.setType("Pickup");
+    o3.setPaymethod("Mobile");
+    o3.setStatus("Preparing");
+    o3.setProductname("Green Tea");
+    }
+    
+    
+    
+    
+    
 }

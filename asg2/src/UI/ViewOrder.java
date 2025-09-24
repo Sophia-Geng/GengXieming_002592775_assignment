@@ -72,7 +72,7 @@ public class ViewOrder extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("View  a  Order");
 
-        jLabel2.setText("ID");
+        jLabel2.setText("Product IDID");
 
         jLabel3.setText("Date");
 
@@ -131,7 +131,7 @@ public class ViewOrder extends javax.swing.JPanel {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(153, 153, 153)
                         .addComponent(jLabel1)))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

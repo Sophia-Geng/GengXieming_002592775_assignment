@@ -7,6 +7,7 @@ package UI;
 import Model.Customer;
 import Model.CustomerDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,6 +48,11 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
         AddCustmoer = new javax.swing.JButton();
 
         DeleteProduct.setText("Delete");
+        DeleteProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteProductActionPerformed(evt);
+            }
+        });
 
         SearchProduct.setText("Search");
         SearchProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +152,18 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_SearchProductActionPerformed
 
     private void ViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductActionPerformed
-        // TODO add your handling code here:
+        int selectedRow=tblCustomer.getSelectedRow();
+        if(selectedRow>=0){
+            Customer selectedAccount=(Customer)tblCustomer.getValueAt(selectedRow, 0);
+            
+            ViewProduct panel=new ViewProduct(MainMenu, customerdirectory, selectedAccount);
+            MainMenu.add("ViewAccountJPanel",panel);
+            CardLayout layout=(CardLayout) MainMenu.getLayout();
+            layout.next(MainMenu);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "please select an account from the list", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_ViewProductActionPerformed
 
     private void AddCustmoerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCustmoerActionPerformed
@@ -156,6 +173,28 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
         CardLayout layout=(CardLayout)MainMenu.getLayout();
         layout.next(MainMenu); 
     }//GEN-LAST:event_AddCustmoerActionPerformed
+
+    private void DeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteProductActionPerformed
+            int selectedRow = tblCustomer.getSelectedRow();
+        if(selectedRow >= 0){
+        int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure to delete the customer?", 
+                                                        "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            String customerId = (String)tblCustomer.getValueAt(selectedRow, 0);
+            Customer selectedProduct = customerdirectory.searchCustomer(customerId);
+            
+            if(selectedProduct != null){
+                customerdirectory.deleteCustomer(selectedProduct);
+                populateTable();
+                JOptionPane.showMessageDialog(this, "customer deleted successfully!");
+            } else {
+                JOptionPane.showMessageDialog(this, "customer not found!");
+            }
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select an customer to delete!");
+    } 
+    }//GEN-LAST:event_DeleteProductActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -179,8 +218,15 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
     row[2] = c.getLastname();
     row[3] = c.getContact(); 
     model.addRow(row);                  
-}
-
+}}
+    @Override
+    public void setVisible(boolean visible) {
+    super.setVisible(visible);
+    if (visible) {
+        populateTable(); // 每次显示时刷新
+    }
         
     }
+    
+    
 }

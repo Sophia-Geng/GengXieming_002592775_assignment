@@ -4,6 +4,13 @@
  */
 package UI;
 
+import Model.Product;
+import Model.ProductDirectory;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author DELL
@@ -13,8 +20,19 @@ public class ViewProduct extends javax.swing.JPanel {
     /**
      * Creates new form ViewProduct
      */
-    public ViewProduct() {
+    private JPanel MainMenu;
+    private ProductDirectory productdirectory;
+    private Product product;
+    public ViewProduct(JPanel container, ProductDirectory productDirectory , Product product1 ) {
         initComponents();
+        MainMenu=container;
+        productdirectory=productDirectory;
+        product=product1;
+        
+        populateFields();    
+        setViewMode();
+        refreshTextFields();
+        
     }
 
     /**
@@ -26,33 +44,43 @@ public class ViewProduct extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        fieldProductname = new javax.swing.JTextField();
+        fieldProductID = new javax.swing.JTextField();
+        fieldCategory = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
+        fieldPrice = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        fieldNumber = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        fieldPrepTime = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        Save = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        Update = new javax.swing.JButton();
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("View  a  Product");
 
-        jLabel2.setText("Name");
+        jLabel2.setText("Product Name");
 
-        jLabel3.setText("ID");
+        jLabel3.setText("Product ID");
 
-        jButton2.setText("Save");
+        Save.setText("Save");
+        Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Category");
 
@@ -62,10 +90,10 @@ public class ViewProduct extends javax.swing.JPanel {
 
         jLabel7.setText("PrepareTime");
 
-        jButton3.setText("Update");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Update.setText("Update");
+        Update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                UpdateActionPerformed(evt);
             }
         });
 
@@ -95,18 +123,18 @@ public class ViewProduct extends javax.swing.JPanel {
                                     .addComponent(jLabel4))
                                 .addGap(137, 137, 137)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField5)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))))
+                                    .addComponent(fieldProductname)
+                                    .addComponent(fieldProductID)
+                                    .addComponent(fieldCategory)
+                                    .addComponent(fieldPrice)
+                                    .addComponent(fieldNumber)
+                                    .addComponent(fieldPrepTime, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(210, 210, 210)
-                        .addComponent(jButton2)
+                        .addComponent(Save)
                         .addGap(158, 158, 158)
-                        .addComponent(jButton3)))
-                .addContainerGap(216, Short.MAX_VALUE))
+                        .addComponent(Update)))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,44 +146,88 @@ public class ViewProduct extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldProductname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPrepTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(Save)
+                    .addComponent(Update))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+            setViewMode();
+    }//GEN-LAST:event_UpdateActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         MainMenu.remove(this);
+        Component[] panelStack=MainMenu.getComponents();
+        JPanel lastPanel =(JPanel)panelStack[panelStack.length-1];
+        ProductMngJPanel JPanel=(ProductMngJPanel)lastPanel;
+        JPanel.populateTable();
+        
+        CardLayout layout=(CardLayout)MainMenu.getLayout();
+        layout.previous(MainMenu);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+        // TODO add your handling code here:
+        String category=fieldCategory.getText();
+        String number=fieldNumber.getText();
+        String prepTime=fieldPrepTime.getText();
+        String productID=fieldProductID.getText();
+        String price=fieldPrice.getText();
+        String pdctname=fieldProductname.getText();   
+        
+        if (category.isBlank()||number.isBlank()||prepTime.isBlank()||productID.isBlank()||price.isBlank()||pdctname.isBlank()){
+            JOptionPane.showMessageDialog(null, "All fields are mandatory");
+            return;
+        }
+        product.setCategory(category);
+        product.setId(productID);
+        product.setName(pdctname);
+        ;   // 转成 int
+        product.setPreparetime(Integer.parseInt(prepTime));   
+        product.setNumber(Integer.parseInt(prepTime));
+        product.setPrice(Double.parseDouble(prepTime));
+
+        JOptionPane.showMessageDialog(null, "Account successfully updated", "warning", JOptionPane.WARNING_MESSAGE);
+        
+        refreshTextFields();
+    }//GEN-LAST:event_SaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Save;
+    private javax.swing.JButton Update;
+    private javax.swing.JTextField fieldCategory;
+    private javax.swing.JTextField fieldNumber;
+    private javax.swing.JTextField fieldPrepTime;
+    private javax.swing.JTextField fieldPrice;
+    private javax.swing.JTextField fieldProductID;
+    private javax.swing.JTextField fieldProductname;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -163,11 +235,24 @@ public class ViewProduct extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+
+    private void populateFields() {
+     if(product!=null){
+          fieldCategory.setText(product.getCategory());
+    fieldProductID.setText(product.getId());
+    fieldProductname.setText(product.getName());
+    fieldPrepTime.setText(String.valueOf(product.getPreparetime()));
+    fieldNumber.setText(String.valueOf(product.getNumber()));
+    fieldPrice.setText(String.valueOf(product.getPrice()));
+     }
+    }
+
+    private void setViewMode() {
+      
+    }
+
+    private void refreshTextFields() {
+      
+    }
 }

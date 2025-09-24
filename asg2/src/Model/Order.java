@@ -11,6 +11,7 @@ import java.util.Date;
  * @author DELL
  */
 public class Order {
+    private static int count = 1;
    String id;
    Date time ;
    String type ;
@@ -21,7 +22,7 @@ public class Order {
    String customerId; 
    String productId;
    String productname;
-    private static int count = 1; 
+    
     public String getProductname() {
         return productname;
     }

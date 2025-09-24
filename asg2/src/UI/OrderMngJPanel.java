@@ -5,10 +5,13 @@
 package UI;
 
 import Model.CustomerDirectory;
+import Model.Order;
 import Model.OrderDirectory;
 import Model.ProductDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -47,7 +50,7 @@ public class OrderMngJPanel extends javax.swing.JPanel {
         ViewProduct = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblOrder = new javax.swing.JTable();
         AddProduct = new javax.swing.JButton();
         DeleteProduct = new javax.swing.JButton();
 
@@ -70,7 +73,7 @@ public class OrderMngJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 24)); // NOI18N
         jLabel1.setText("Order");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -82,14 +85,14 @@ public class OrderMngJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblOrder);
 
         AddProduct.setText("Add ");
         AddProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +102,11 @@ public class OrderMngJPanel extends javax.swing.JPanel {
         });
 
         DeleteProduct.setText("Delete");
+        DeleteProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteProductActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -167,6 +175,32 @@ public class OrderMngJPanel extends javax.swing.JPanel {
 // TODO add your handling code here:
     }//GEN-LAST:event_AddProductActionPerformed
 
+    private void DeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteProductActionPerformed
+        // TODO add your handling code here:
+      
+    int selectedRow = tblOrder.getSelectedRow();
+    if(selectedRow >= 0){
+        int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure to delete the order?", 
+                                                        "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            String orderId = (String)tblOrder.getValueAt(selectedRow, 0);
+            Order selectedOrder = orderdirectory.searchOrder(orderId);
+            
+            if(selectedOrder != null){
+                orderdirectory.deleteOrder(selectedOrder);
+                populateTable();
+                JOptionPane.showMessageDialog(this, "Order deleted successfully!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Order not found!");
+            }
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select an order to delete!");
+    }
+
+            
+    }//GEN-LAST:event_DeleteProductActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddProduct;
@@ -175,11 +209,31 @@ public class OrderMngJPanel extends javax.swing.JPanel {
     private javax.swing.JButton ViewProduct;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblOrder;
     // End of variables declaration//GEN-END:variables
 
       private void populateTable() {
-        
+         DefaultTableModel model = (DefaultTableModel) tblOrder.getModel();
+         model.setRowCount(0);
+    for(Order o : orderdirectory.getOrderlist()){
+    Object[] row = new Object[7];
+    row[0] = o.getId();                         
+    row[1] = o.getCustomerId();      
+    row[2] = o.getTime() != null ? o.getTime().toString() : "";
+    row[3] = o.getType();
+    row[4] = o.getPaymethod();      
+    row[5] = o.getStatus();
+    row[6] = o.getProductname();
+    model.addRow(row); 
     }
+}
+@Override
+    public void setVisible(boolean visible) {
+    super.setVisible(visible);
+    if (visible) {
+        populateTable(); // 每次显示时刷新
+    }}
+
+
 }
