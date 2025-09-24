@@ -45,8 +45,8 @@ public class OrderMngJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SearchProduct = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        SearchOrder = new javax.swing.JButton();
+        fieldSearch = new javax.swing.JTextField();
         ViewProduct = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -56,10 +56,10 @@ public class OrderMngJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 204, 102));
 
-        SearchProduct.setText("Search");
-        SearchProduct.addActionListener(new java.awt.event.ActionListener() {
+        SearchOrder.setText("Search");
+        SearchOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchProductActionPerformed(evt);
+                SearchOrderActionPerformed(evt);
             }
         });
 
@@ -120,9 +120,9 @@ public class OrderMngJPanel extends javax.swing.JPanel {
                 .addGap(160, 160, 160)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(SearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ViewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,15 +150,33 @@ public class OrderMngJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DeleteProduct)
-                    .addComponent(SearchProduct)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SearchOrder)
+                    .addComponent(fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchProductActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchProductActionPerformed
+    private void SearchOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchOrderActionPerformed
+           if(!fieldSearch.getText().isBlank()){
+            String accountNumber=fieldSearch.getText();
+            Order found =orderdirectory.searchOrder(accountNumber);
+            
+            if(found !=null){
+                
+                ViewOrder panel =new ViewOrder(MainMenu, orderdirectory, found);
+                MainMenu.add("ViewOrder",panel);
+                CardLayout layout =(CardLayout)MainMenu.getLayout();
+                layout.next(MainMenu);    
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Order not found. Please check the account number and try again");
+                
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Please type the Order id");
+        }
+    }//GEN-LAST:event_SearchOrderActionPerformed
 
     private void ViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductActionPerformed
        int selectedRow=tblOrder.getSelectedRow();
@@ -226,11 +244,11 @@ public class OrderMngJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddProduct;
     private javax.swing.JButton DeleteProduct;
-    private javax.swing.JButton SearchProduct;
+    private javax.swing.JButton SearchOrder;
     private javax.swing.JButton ViewProduct;
+    private javax.swing.JTextField fieldSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblOrder;
     // End of variables declaration//GEN-END:variables
 

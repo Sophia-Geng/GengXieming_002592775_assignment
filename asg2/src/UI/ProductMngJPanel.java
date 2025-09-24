@@ -44,7 +44,7 @@ public class ProductMngJPanel extends javax.swing.JPanel {
         AddProduct = new javax.swing.JButton();
         DeleteProduct = new javax.swing.JButton();
         SearchProduct = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        fieldSearch = new javax.swing.JTextField();
         ViewProduct = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 204));
@@ -115,7 +115,7 @@ public class ProductMngJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(SearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ViewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,7 +145,7 @@ public class ProductMngJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DeleteProduct)
                     .addComponent(SearchProduct)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -159,7 +159,25 @@ public class ProductMngJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_AddProductActionPerformed
 
     private void SearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchProductActionPerformed
-        // TODO add your handling code here:
+        if(!fieldSearch.getText().isBlank()){
+            String product=fieldSearch.getText();
+            Product foundproduct=productdirectory.searchProduct(product);
+            
+            if(foundproduct !=null){
+                ViewProduct panel=new ViewProduct(MainMenu,productdirectory,foundproduct);
+                MainMenu.add("ViewProduct",panel);
+                CardLayout layout =(CardLayout)MainMenu.getLayout();
+                layout.next(MainMenu);      
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Account not found. Please check the product id and try again");
+                
+            }
+            
+        }
+         else{
+            JOptionPane.showMessageDialog(null,"Please type the product id");
+        }
     }//GEN-LAST:event_SearchProductActionPerformed
 
     private void ViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProductActionPerformed
@@ -211,9 +229,9 @@ public class ProductMngJPanel extends javax.swing.JPanel {
     private javax.swing.JButton DeleteProduct;
     private javax.swing.JButton SearchProduct;
     private javax.swing.JButton ViewProduct;
+    private javax.swing.JTextField fieldSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblProduct;
     // End of variables declaration//GEN-END:variables
 

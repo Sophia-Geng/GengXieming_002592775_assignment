@@ -7,6 +7,7 @@ package UI;
 import Model.Order;
 import Model.OrderDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -26,6 +27,9 @@ public class ViewOrder extends javax.swing.JPanel {
         MainMenu=mainmenu;
         orderdirectory=directory;
         order=order1;
+        populateFields();    
+        setViewMode();
+        refreshTextFields();
     }
 
     /**
@@ -39,21 +43,21 @@ public class ViewOrder extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        fieldCustomerID = new javax.swing.JTextField();
+        btnUpdate = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        fieldStatus = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        fieldProduct = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
+        fieldProductID = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        fieldDate = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        fieldType = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        fieldPaymentMethod = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
         jButton1.setText("Back");
@@ -65,10 +69,10 @@ public class ViewOrder extends javax.swing.JPanel {
 
         jLabel7.setText("Product");
 
-        jButton3.setText("Update");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -79,7 +83,12 @@ public class ViewOrder extends javax.swing.JPanel {
 
         jLabel3.setText("Date");
 
-        jButton2.setText("Save");
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Type");
 
@@ -116,19 +125,19 @@ public class ViewOrder extends javax.swing.JPanel {
                                         .addComponent(jLabel8)))
                                 .addGap(110, 110, 110)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fieldPaymentMethod, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fieldCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField1)
-                                        .addComponent(jTextField2)
-                                        .addComponent(jTextField3)
-                                        .addComponent(jTextField5)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(fieldProductID)
+                                        .addComponent(fieldDate)
+                                        .addComponent(fieldType)
+                                        .addComponent(fieldStatus)
+                                        .addComponent(fieldProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(98, 98, 98)
-                                .addComponent(jButton2)
+                                .addComponent(btnSave)
                                 .addGap(158, 158, 158)
-                                .addComponent(jButton3))))
+                                .addComponent(btnUpdate))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,42 +155,44 @@ public class ViewOrder extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPaymentMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnSave)
+                    .addComponent(btnUpdate))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        
+         setViewMode();
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -190,11 +201,50 @@ public class ViewOrder extends javax.swing.JPanel {
         layout.previous(MainMenu);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String customerID = fieldCustomerID.getText();
+
+String paymentMethod = fieldPaymentMethod.getText();
+String product = fieldProduct.getText();
+String productID = fieldProductID.getText();
+String status = fieldStatus.getText();
+String type = fieldType.getText();
+
+if (customerID.isBlank()  || paymentMethod.isBlank() || 
+    product.isBlank() || productID.isBlank() || status.isBlank() || type.isBlank()) {
+    JOptionPane.showMessageDialog(null, "All fields are mandatory");
+    return;
+}
+
+   
+    fieldDate.setEnabled(false); 
+    order.setCustomerId(customerID);
+    
+    order.setPaymethod(paymentMethod);
+    order.setProductname(product);
+    order.setProductId(productID);
+    order.setStatus(status);
+    order.setType(type);
+
+JOptionPane.showMessageDialog(null, "Order successfully updated", "warning", JOptionPane.WARNING_MESSAGE);
+
+    refreshTextFields();
+
+    }//GEN-LAST:event_btnSaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JTextField fieldCustomerID;
+    private javax.swing.JTextField fieldDate;
+    private javax.swing.JTextField fieldPaymentMethod;
+    private javax.swing.JTextField fieldProduct;
+    private javax.swing.JTextField fieldProductID;
+    private javax.swing.JTextField fieldStatus;
+    private javax.swing.JTextField fieldType;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -203,12 +253,46 @@ public class ViewOrder extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshTextFields() {
+      fieldCustomerID.setEnabled(false);
+fieldDate.setEnabled(false);
+fieldPaymentMethod.setEnabled(false);
+fieldProduct.setEnabled(false);
+fieldProductID.setEnabled(false);
+fieldStatus.setEnabled(false);
+fieldType.setEnabled(false);
+
+btnSave.setEnabled(false);
+btnUpdate.setEnabled(true);
+
+    }
+
+    private void setViewMode() {
+      fieldCustomerID.setEnabled(true);
+fieldDate.setEnabled(false);
+fieldPaymentMethod.setEnabled(true);
+fieldProduct.setEnabled(true);
+fieldProductID.setEnabled(true);
+fieldStatus.setEnabled(true);
+fieldType.setEnabled(true);
+
+btnSave.setEnabled(true);
+btnUpdate.setEnabled(false);
+ 
+    }
+
+    private void populateFields() {
+      if (order != null) {
+    fieldCustomerID.setText(order.getCustomerId());
+    fieldDate.setText(order.getTime().toString()); 
+    fieldPaymentMethod.setText(order.getPaymethod());
+    fieldProduct.setText(order.getProductname());  
+    fieldProductID.setText(order.getProductId());
+    fieldStatus.setText(order.getStatus());
+    fieldType.setText(order.getType());
+}
+ 
+    }
 }

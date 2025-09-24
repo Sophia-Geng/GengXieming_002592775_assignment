@@ -40,7 +40,7 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
 
         DeleteCustomer = new javax.swing.JButton();
         SearchCustomer = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        fieldSearch = new javax.swing.JTextField();
         ViewCustomer = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -113,7 +113,7 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(SearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ViewCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,33 +142,51 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DeleteCustomer)
                     .addComponent(SearchCustomer)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void SearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchCustomerActionPerformed
-        // TODO add your handling code here:
+          if(!fieldSearch.getText().isBlank()){
+            String accountNumber=fieldSearch.getText();
+            Customer found =customerdirectory.searchCustomer(accountNumber);
+            
+            if(found !=null){
+                
+                ViewRecords panel =new ViewRecords(MainMenu, customerdirectory, found);
+                MainMenu.add("ViewRecords",panel);
+                CardLayout layout =(CardLayout)MainMenu.getLayout();
+                layout.next(MainMenu);    
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Customer not found. Please check  and try again");
+                
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Please type the information");
+        }
+        
     }//GEN-LAST:event_SearchCustomerActionPerformed
 
     private void ViewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewCustomerActionPerformed
   int selectedRow=tblCustomer.getSelectedRow();
         if(selectedRow>=0){
-            
-            // 获取选中行的Product ID（第1列）
-             String productId = (String)tblCustomer.getValueAt(selectedRow, 1);
+           
+             String Id = (String)tblCustomer.getValueAt(selectedRow, 0);
             // 通过ID查找Product对象
-             Customer selectedProduct = CustomerDirectory.searchCustomer(productId);
+             Customer selectedProduct = customerdirectory.searchCustomer(Id);
            if(selectedProduct != null){
-            ViewProduct panel = new ViewProduct(MainMenu, customerdirectory, selectedProduct);
-            MainMenu.add("ViewProduct", panel);
+            ViewRecords panel = new ViewRecords(MainMenu, customerdirectory, selectedProduct);
+            MainMenu.add("ViewRecords", panel);
             CardLayout layout = (CardLayout) MainMenu.getLayout();
             layout.next(MainMenu);
         } else {
-            JOptionPane.showMessageDialog(this, "Product not found!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Customer not found!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     } else {
-        JOptionPane.showMessageDialog(this, "Please select a product from the list", "Warning", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Please select a customer from the list", "Warning", JOptionPane.WARNING_MESSAGE);
     }
     }//GEN-LAST:event_ViewCustomerActionPerformed
 
@@ -208,9 +226,9 @@ public class CustomerMngJPanel extends javax.swing.JPanel {
     private javax.swing.JButton DeleteCustomer;
     private javax.swing.JButton SearchCustomer;
     private javax.swing.JButton ViewCustomer;
+    private javax.swing.JTextField fieldSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblCustomer;
     // End of variables declaration//GEN-END:variables
 
