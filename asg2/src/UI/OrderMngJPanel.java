@@ -24,7 +24,7 @@ public class OrderMngJPanel extends javax.swing.JPanel {
      */
     private JPanel MainMenu;
     private OrderDirectory orderdirectory; 
-     private CustomerDirectory customerdirectory;
+    private CustomerDirectory customerdirectory;
     private ProductDirectory productdirectory;
     public OrderMngJPanel(JPanel mainmenu, OrderDirectory directoryo,CustomerDirectory directoryc, ProductDirectory directoryp) {
         initComponents();
