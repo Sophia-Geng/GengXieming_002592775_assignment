@@ -30,14 +30,17 @@ public class CustomerDirectory {
   public void deleteCustomer(Customer order){
       customerlist.remove(order);
   }
-  public Customer searchCustomer(String id){
-      for(Customer o:customerlist){
-          if(o.getId().equals(id)){
-              return o;
-          }
-      }
-      return null;
-  }
-  
+public Customer searchCustomer(String key) {
+    for (Customer o : customerlist) {
+        if (o.getId().equalsIgnoreCase(key) ||
+            o.getFirstname().equalsIgnoreCase(key) ||
+            o.getLastname().equalsIgnoreCase(key)) {
+            return o;
+        }
+    }
+    return null;
+}
+
+
     
 }
