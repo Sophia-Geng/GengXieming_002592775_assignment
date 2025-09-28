@@ -33,7 +33,7 @@ public class OrderDirectory {
   }
   public Order searchOrder(String id){
       for(Order o:orderlist){
-          if(o.getId().contains(id)){
+          if(o.getId().contains(id)||o.getProductname().contains(id)){
               return o;
           }
       }
